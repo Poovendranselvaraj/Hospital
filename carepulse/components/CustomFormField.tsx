@@ -32,6 +32,7 @@ const RenderField = ({field, props}: {field: any; props: CustomProps}) => {
         <Input
           type='text'
           placeholder='John Doe'
+          {...field}
         />
     )
 }
