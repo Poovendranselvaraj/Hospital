@@ -1,1 +1,1 @@
-export const GenderOptions=['male', 'female', 'other', 'prefer not to say']
+export const GenderOptions=['male', 'female', 'other']
