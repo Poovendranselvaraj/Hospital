@@ -3,6 +3,8 @@ import { users } from "../appwrite.config";
 
 export const createUser=async (user: CreateUserParams) => {
     try {
+        console.log("aaaaaaaaaaaaaaaa")
+        console.log(user)
        const newUser=await users.create(
         ID.unique(), 
         user.email, 
@@ -10,7 +12,11 @@ export const createUser=async (user: CreateUserParams) => {
         undefined, 
         user.name
     )
+    console.log("user saved")
+
     } catch (error:any) {
+        console.log("cccccccccccccccccccc")
+        console.log(error)
         if(error && error?.code === 409) {
             const documents = await users.list([
                 Query.equal('email',[user.email])
@@ -19,4 +25,5 @@ export const createUser=async (user: CreateUserParams) => {
             return documents?.users[0]
         }
     }
+    console.log("bbbbbbbbbbbbbbbb")
 }
