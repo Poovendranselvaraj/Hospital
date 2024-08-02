@@ -145,7 +145,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
            {props.label}
           </label>
         </div>
-      </FormControl>)
+      </FormControl>) 
     default:
       break;
   }
