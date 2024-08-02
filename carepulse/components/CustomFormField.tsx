@@ -17,7 +17,7 @@ import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { E164Number } from 'libphonenumber-js/core'
 
-import DataPicker from "react-datepicker"
+import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { Select, SelectContent, SelectTrigger, SelectValue } from './ui/select'
 import { Textarea } from './ui/textarea'
@@ -99,7 +99,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             className='ml-2'
           />
           <FormControl>
-            <DataPicker
+            <DatePicker
               selected={field.value}
               onChange={(date) => field.onChange(date)} 
               dateFormat={dateFormat ?? 'MM/dd/yyyy'}
