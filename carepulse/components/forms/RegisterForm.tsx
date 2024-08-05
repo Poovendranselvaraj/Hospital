@@ -70,9 +70,6 @@ const RegisterForm = ({ user }: { user: User }) => {
         console.log(error);
       }
 
-
-
-
       } catch (error) {
         console.log(error);
       }
