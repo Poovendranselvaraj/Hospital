@@ -1,5 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { Doctors } from '@/constants';
 import { getAppointment } from '@/lib/actions/appointment.actions';
+import { formatDateTime } from '@/lib/utils';
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -28,7 +30,7 @@ const Success = async ({params: { userId },searchParams}: SearchParamProps) => {
                         alt="success"
                     />
                     <h2 className='header mb-6 max-w-[600px] text-center'>
-                        Your<span className='text-green-500'>appointment request</span>has been successfully submitted!
+                        Your<span className='text-green-500'> appointment request</span> has been successfully submitted!
                     </h2>
                     <p>We will be in touch shortly to confirm.</p>
                 </section>
@@ -42,8 +44,23 @@ const Success = async ({params: { userId },searchParams}: SearchParamProps) => {
                         height={100} width={100}
                         className='size-6'
                       />
+                      <p className='whitespace-nowrap'>Dr. {doctor?.name}</p>
+                    </div>
+                    <div className='flex gap-2'>
+                        <Image
+                            src="/assets/icons/calendar.svg"
+                            height={24} width={24}
+                            alt="calendar"  
+                        />
+                        <p>{formatDateTime(appointment.schedule).dateTime}</p>
                     </div>
                 </section>
+                <Button variant="outline" className='shad-primary-btn' asChild>
+                    <Link href={`/patients/${userId}/new-appointment`}>
+                        New Appointment
+                    </Link>
+                </Button>
+                <p className='copyright'>© 2024 CarePulse</p>
             </div> 
         </div>
     )
