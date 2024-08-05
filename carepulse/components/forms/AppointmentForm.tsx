@@ -74,7 +74,7 @@ const AppointmentForm = ({
                   router.push('/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}');           }
                 }
         } catch (error) {
-            console.log(error);
+            console.log(error); 
         }
 
         setIsLoading(false);
