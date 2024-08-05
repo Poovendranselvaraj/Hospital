@@ -45,7 +45,7 @@ export const getUser=async (userId: string) => {
 export const registerPatient=async ({ identificationDocument, ...patient }: RegisterUserParams) => {
     try {
         let file;
-
+        console.log("onsode actions")
         if(identificationDocument) {
             const inputFile = InputFile.fromBuffer(
                identificationDocument?.get('blobFile') as Blob,
