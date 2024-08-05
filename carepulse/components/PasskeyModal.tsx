@@ -17,29 +17,50 @@ import {
     InputOTPSeparator,
     InputOTPSlot,
 } from "@/components/ui/input-otp"
+import { decryptKey, encryptKey } from "@/lib/utils";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react"
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react"
 
 const PasskeyModal = () => {
     const router = useRouter();
+    const path=usePathname();
     const [open, setOpen] = useState(true);
     const [passkey, setPasskey] = useState('');
     const [error, setError] = useState('');
 
-       
-    const validatePasskey = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
+    const encryptedkey=typeof window !== 'undefined' ? window.localStorage.getItem('accessKey') : null;
 
-        if (passkey===process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
-        } else {
-            setError('Invalid Passkey. Please try again.');
+    useEffect(() => {
+        const accessKey = encryptedkey && decryptKey(encryptedkey);
+        if(path) {
+            if(accessKey===process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+              setOpen(false);
+              router.push('/admin')
+            } else {
+                setOpen(true);
+            }
         }
-    }
+    }, [encryptedkey])
 
     const closeModal = () => {
         setOpen(false);
         router.push('/')
+    }
+
+    const validatePasskey = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        console.log(passkey,"aaaaaaaaaaaaa")
+
+        if (passkey===process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+            const encryptedkey = encryptKey(passkey);
+            console.log(encryptedkey,"encrypted key")
+            localStorage.setItem('accessKey', encryptedkey);
+
+            setOpen(false);
+        } else {
+            setError('Invalid Passkey. Please try again.');
+        }
     }
 
     return (
@@ -61,7 +82,7 @@ const PasskeyModal = () => {
                         To access the admin page, please enter your passkey.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
-
+ 
                 <div>
                     <InputOTP maxLength={6} value={passkey} onChange={(value)=>setPasskey(value)}>
                         <InputOTPGroup className="shad-otp">
