@@ -153,10 +153,10 @@ const AppointmentForm = ({
                         <CustomFormField
                             fieldType={FormFieldType.DATE_PICKER}
                             control={form.control}
-                            name="Schedule"
+                            name="schedule"
                             label="Expected appointment date"
                             showTimeSelect
-                            dateFormat="MM/dd/yyyy - h:mm aa"
+                            dateFormat="MM/dd/yyyy - hh:mm aa"
                         />
 
                         <div className="flex flex-col gap-6 xl:flex-row ">
