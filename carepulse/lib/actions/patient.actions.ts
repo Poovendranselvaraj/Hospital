@@ -44,11 +44,14 @@ export const getUser=async (userId: string) => {
 
 export const getPatient=async (userId: string) => {
     try{
+        console.log("inside getPatient",userId)
+        console.log(DATABASE_ID,PATIENT_COLLECTION_ID)
         const patients = await databases.listDocuments(
             DATABASE_ID!,
             PATIENT_COLLECTION_ID!,
             [Query.equal('userId', userId)]
         );
+        console.log("patients",patients)
         return parseStringify(patients.documents[0]);
 
     }catch (error) {    

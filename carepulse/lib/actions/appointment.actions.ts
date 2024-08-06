@@ -34,12 +34,15 @@ export const getAppointment = async (appointmentId: string) => {
 }
 
 export const getRecentAppointmentList = async () => {
+    console.log("DATABASE_ID",DATABASE_ID)
+    console.log("APPOINTMENT_COLLECTION_ID",APPOINTMENT_COLLECTION_ID)
     try {
         const appointments = await databases.listDocuments(
             DATABASE_ID!,
             APPOINTMENT_COLLECTION_ID!,
-            [Query.orderDesc(`$createdAt`)]
+            // [Query.orderDesc('$createdAt')]
         )
+        console.log("appointmentsquery",appointments)
 
         const initialCounts={
             scheduledCount: 0,

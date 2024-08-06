@@ -1,3 +1,4 @@
+
 import AppointmentForm from "@/components/forms/AppointmentForm";
 import PatientForm from "@/components/forms/PatientForm";
 import { getPatient } from "@/lib/actions/patient.actions";
@@ -5,7 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function NewAppointment({params: { userId }}: SearchParamProps) {
+  console.log("userId",userId)
   const patient= await getPatient(userId);
+  console.log("patient",patient)
+  
   return(
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
@@ -21,7 +25,7 @@ export default async function NewAppointment({params: { userId }}: SearchParamPr
           <AppointmentForm 
            type="create"
            userId={userId} 
-           patientId={`patient.$id`}
+           patientId={patient.$id}
           />
 
           <p className="copyright mt-10 py-12">

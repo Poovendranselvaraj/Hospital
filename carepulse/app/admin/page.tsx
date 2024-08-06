@@ -9,6 +9,8 @@ import Link from 'next/link'
 
 const Admin = async () => {
   const appointments= await getRecentAppointmentList()
+  console.log("aaaaaaaaaaaa")
+  console.log(appointments,"appointments")
 
 
   return (

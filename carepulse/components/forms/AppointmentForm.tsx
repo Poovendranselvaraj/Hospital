@@ -25,6 +25,7 @@ const AppointmentForm = ({
     type: "create" | "cancel" | "schedule";
 
 }) => {
+    console.log("patientid",patientId)
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
